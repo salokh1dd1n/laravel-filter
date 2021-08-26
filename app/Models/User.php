@@ -2,15 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasFactory;
+
+    protected $perPage = 10;
 
     /**
      * The attributes that are mass assignable.
@@ -21,6 +20,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'is_active',
+        'birthday',
+        'gender',
     ];
 
     /**
@@ -41,4 +43,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Filter Scope
+     *
+     * @param $model
+     * @param $filters
+     * @return mixed
+     */
+    public function scopeFilter($builder, $filters): mixed
+    {
+        return $filters->apply($builder);
+    }
 }
