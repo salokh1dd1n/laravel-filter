@@ -45,14 +45,13 @@ class User extends Authenticatable
     ];
 
     /**
-     * Filter Scope
-     *
-     * @param $model
-     * @param $filters
+     * @param $query
+     * @param $filter
+     * @param $attributes
      * @return mixed
      */
-    public function scopeFilter($builder, $filters): mixed
+    public function scopeFilter($query, $filter, $attributes): mixed
     {
-        return $filters->apply($builder);
+        return $filter->apply($query, $attributes);
     }
 }
