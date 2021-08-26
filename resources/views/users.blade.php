@@ -29,7 +29,7 @@
                 <div class="mb-3">
                     <label for="gender" class="form-label">Gender:</label>
                     <select class="form-select" id="gender" name="gender">
-                        <option selected>Select Gender</option>
+                        <option value selected>Select Gender</option>
                         <option value="male" @if(request()->get('gender') == 'male') selected @endif>Male</option>
                         <option value="female" @if(request()->get('gender') == 'female') selected @endif>Female</option>
                     </select>
