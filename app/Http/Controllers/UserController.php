@@ -21,7 +21,7 @@ class UserController extends Controller
     public function index(Request $request, UserFilter $filter): View|Factory|Application
     {
         $attributes = UserPayload::getFilters($request->all());
-        $users = User::filter($filter, $attributes)->get();
+        $users = User::filter($filter, $attributes)->paginate();
 
         return view('users', compact('users'));
     }
